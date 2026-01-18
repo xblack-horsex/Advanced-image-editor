@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced Image Editor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <h1><a href="" class="app-title">Advanced Image Editor</a></h1>
+</header>
+
+<main class="container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <label class="upload-btn">
+      📁 Choose Image
+      <input type="file" id="upload" accept="image/*" hidden>
+    </label>
+
+    <h3>Adjustments</h3>
+    <label>Brightness</label>
+    <input type="range" id="brightness" min="0" max="200" value="100">
+
+    <label>Contrast</label>
+    <input type="range" id="contrast" min="0" max="200" value="100">
+
+    <label>Saturation</label>
+    <input type="range" id="saturate" min="0" max="200" value="100">
+
+    <h3>Presets</h3>
+    <div class="buttons">
+      <button onclick="applyPreset('grayscale')">Grayscale</button>
+      <button onclick="applyPreset('sepia')">Sepia</button>
+      <button onclick="applyPreset('vintage')">Vintage</button>
+      <button onclick="applyPreset('cool')">Cool</button>
+      <button onclick="applyPreset('warm')">Warm</button>
+    </div>
+
+    <h3>Transform</h3>
+    <div class="buttons">
+      <button onclick="rotate(-90)">⟲ Rotate</button>
+      <button onclick="rotate(90)">⟳ Rotate</button>
+      <button onclick="flipX()">⇋ Flip X</button>
+      <button onclick="flipY()">⇅ Flip Y</button>
+    </div>
+
+    <h3>Crop</h3>
+    <div class="buttons">
+      <button onclick="startCrop()">✂ Start Crop</button>
+      <button onclick="applyCrop()">✔ Apply Crop</button>
+    </div>
+
+    <h3>History</h3>
+    <div class="buttons">
+      <button onclick="undo()">↶ Undo</button>
+      <button onclick="redo()">↷ Redo</button>
+    </div>
+
+    <button class="compare" onclick="toggleCompare()">👁 Compare</button>
+    <button class="download" onclick="downloadImage()">⬇ Download</button>
+    <button class="compress" onclick="compressImage()">🗜️ Compress</button>
+    <button class="reset" onclick="resetAll()">Reset All</button>
+
+  </aside>
+
+  <!-- PREVIEW -->
+  <section class="preview-area">
+
+    <!-- BEFORE (hidden initially) -->
+    <div class="preview-box before">
+      <h4>Before</h4>
+      <div class="preview">
+        <img id="originalImage">
+      </div>
+    </div>
+
+    <!-- AFTER -->
+    <div class="preview-box after">
+      <h4>After</h4>
+      <div class="preview crop-container" id="editor">
+        <img id="image">
+        <div id="cropOverlay"></div>
+        <div id="cropBox"></div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- COMPRESSION MODAL -->
+<div class="modal hidden" id="compressModal">
+  <div class="modal-content">
+    <h3>Compression Result</h3>
+    <p id="compressInfo"></p>
+    <div class="modal-actions">
+      <button onclick="downloadCompressed()">Download</button>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
